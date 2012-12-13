@@ -82,7 +82,10 @@ TEST(CrashingTestsAreReportedAsFailures)
         CrashingTest() : Test("crashing") {}
         virtual void RunImpl() const
         {
-            reinterpret_cast< void (*)() >(0)();
+            int *p = NULL;
+            *p = 42;
+            // TODO: restore this jump to NULL when QEMU-Linaro fixes hanging issue
+            // reinterpret_cast< void (*)() >(0)();
         }
     };
 
