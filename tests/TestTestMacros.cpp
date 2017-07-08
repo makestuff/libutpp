@@ -139,6 +139,7 @@ TEST_FIXTURE_EX(FixtureDtorThrows, FixtureDtorThrowsTestName, throwingFixtureTes
 {
 }
 
+#ifndef WIN32
 TEST(FixturesWithThrowingDtorsAreFailures)
 {
 	CHECK(throwingFixtureTestList2.GetHead() != NULL);
@@ -154,6 +155,7 @@ TEST(FixturesWithThrowingDtorsAreFailures)
 	CHECK_EQUAL(1, failureCount);
 	CHECK(strstr(reporter.lastFailedMessage, "while destroying fixture"));
 }
+#endif
 
 const int FailingLine = 123;
 

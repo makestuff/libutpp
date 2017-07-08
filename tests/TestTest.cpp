@@ -73,7 +73,7 @@ TEST(ThrowingTestsAreReportedAsFailures)
 }
 
 
-#ifndef UNITTEST_MINGW
+#if !defined(WIN32) || (!defined(UNITTEST_MINGW) && !defined(_DEBUG))
 TEST(CrashingTestsAreReportedAsFailures)
 {
     class CrashingTest : public Test
